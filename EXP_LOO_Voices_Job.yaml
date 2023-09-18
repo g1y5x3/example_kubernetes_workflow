@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cpu-job-145
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+        - name: cpu-container
+          image: gitlab-registry.nrp-nautilus.io/yg5d6/testcpu
+          command: ["/bin/bash", "-c"]
+          args: ["cd home; git clone https://github.com/g1y5x3/GA-SVM_Confounding.git; cd GA-SVM_Confounding; python3 EXP_LOO_Depression_GA-SVM.py -s 72 -nsub 1 -ngen 7 -pop 128 -perm 1000 -thread 16 -group experiment_ngen=7 -tag rep_10"]
+          resources:
+            limits:
+              memory: "4G"
+              cpu: "16"
+            requests:
+              memory: "4G"
+              cpu: "16"
+      restartPolicy: Never

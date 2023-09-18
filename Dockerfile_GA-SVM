@@ -1,0 +1,18 @@
+FROM --platform=linux/amd64 nautilus:latest
+
+RUN apt-get install wget && \
+    cd home && \
+    wget https://www.dropbox.com/s/96yn9f3lnqiflu1/subjects_40_v6.mat
+
+RUN apt-get update && \
+    apt-get install -y vim  && \
+    apt-get install -y git  && \
+    git config --global user.name  "Yixiang Gao" && \
+    git config --global user.email "yg5d6@umsystem.edu" && \
+    apt-get -y install python3-pip && \
+    pip install scikit-learn && \
+    pip install mlconfound && \
+    pip install wandb && \
+    pip install statsmodels && \
+    pip install pymoo
+    pip install pandas
